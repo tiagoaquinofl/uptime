@@ -1,54 +1,44 @@
-# Change these first
-owner: tiagoaquinofl # Your GitHub organization or username, where this repository lives
-repo: uptime # The name of this repository
+owner: tiagoaquinofl
+repo: uptime
 
 sites:
   - name: Casa
+    description: Servidor pessoal residencial
     url: s.tiagoaquino.com
     check: "tcp-ping"
     port: 443
-  # - name: Wikipedia
-  #  url: https://en.wikipedia.org
-  #- name: Hacker News
-  #  url: https://news.ycombinator.com
-  #- name: Test Broken Site
-  #  url: https://thissitedoesnotexist.koj.co
-  # name: IPv6 test
-  #  url: forwardemail.net
-  # port: 80
-  #  check: "tcp-ping"
-  #  ipv6: true
+    tags: [residencial, principal]
 
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  # cname: demo.upptime.js.org
   baseUrl: /uptime
-  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
-  name: Upptime
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  logoUrl: https://tiagoaquino.com/logo.svg
+  name: Monitoramento da Casa 🏠
+  introTitle: "**Monitoramento da Casa** - status em tempo real dos serviços pessoais de Tiago Aquino"
+  introMessage: |
+    Esta página mostra o uptime e o desempenho dos meus serviços.
+    Gerada automaticamente com [Upptime](https://upptime.js.org) e [GitHub Actions](https://github.com/features/actions).
   navbar:
-    - title: UpTime Tiago
+    - title: Página Inicial
       href: /
     - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+      href: https://github.com/tiagoaquinofl/uptime
+    - title: Site pessoal
+      href: https://tiagoaquino.com
   commitMessages:
     forcePush: true
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
-  notify:
-    needs: response-time
-    runs-on: ubuntu-latest
-    steps:
-      - name: Enviar alerta via Telegram se estiver down
-        if: needs.response-time.outputs.summary != 'up'
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: |
-          MESSAGE="🚨 Serviço está fora do ar! Verifique o status: https://tiagoaquinofl.github.io/uptime"
-          curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage \
-            -d chat_id=${TELEGRAM_CHAT_ID} \
-            -d text="$MESSAGE"
-  
+
+notify:
+  needs: response-time
+  runs-on: ubuntu-latest
+  steps:
+    - name: Enviar alerta via Telegram se estiver fora do ar
+      if: needs.response-time.outputs.summary != 'up'
+      env:
+        TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: |
+        MESSAGE="🚨 *ALERTA: Serviço Fora do Ar!*\n\n📍 *Casa*\n🔗 URL: s.tiagoaquino.com\n🕒 Horário: $(date -u '+%Y-%m-%d %H:%M:%S') UTC\n\n📊 Status: *Offline*\n\n👉 Acesse o status completo: https://tiagoaquinofl.github.io/uptime"
+        curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage \
+          -d chat_id=${TELEGRAM_CHAT_ID} \
+          -d text="$MESSAGE" \
+          -d parse_mode=Markdown
