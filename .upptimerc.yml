@@ -37,3 +37,18 @@ status-website:
     forcePush: true
 # Upptime also supports notifications, assigning issues, and more
 # See https://upptime.js.org/docs/configuration
+  notify:
+    needs: response-time
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enviar alerta via Telegram se estiver down
+        if: needs.response-time.outputs.summary != 'up'
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          MESSAGE="🚨 Serviço está fora do ar! Verifique o status: https://tiagoaquinofl.github.io/uptime"
+          curl -s -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage \
+            -d chat_id=${TELEGRAM_CHAT_ID} \
+            -d text="$MESSAGE"
+  
