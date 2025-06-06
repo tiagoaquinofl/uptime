@@ -1,0 +1,10 @@
+name: Graphs CI
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dummy step
+        run: echo "Graphs CI placeholder"
