@@ -5,11 +5,11 @@
     "icon": "https://icons.duckduckgo.com/ip3/null.ico",
     "slug": "casa",
     "status": "down",
-    "uptime": "98.96%",
-    "uptimeDay": "100.00%",
-    "uptimeWeek": "100.00%",
-    "uptimeMonth": "94.49%",
-    "uptimeYear": "98.82%",
+    "uptime": "98.95%",
+    "uptimeDay": "95.77%",
+    "uptimeWeek": "99.40%",
+    "uptimeMonth": "94.35%",
+    "uptimeYear": "98.81%",
     "time": 171,
     "timeDay": 198,
     "timeWeek": 174,
@@ -29,7 +29,8 @@
       "2026-07-10": 256,
       "2026-07-09": 0,
       "2026-07-12": 1223,
-      "2026-07-11": 933
+      "2026-07-11": 933,
+      "2026-07-24": 61
     }
   }
 ]
