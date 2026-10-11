@@ -4,15 +4,15 @@
     "url": "s.tiagoaquino.com",
     "icon": "https://icons.duckduckgo.com/ip3/null.ico",
     "slug": "casa",
-    "status": "down",
-    "uptime": "99.11%",
-    "uptimeDay": "100.00%",
-    "uptimeWeek": "100.00%",
-    "uptimeMonth": "100.00%",
-    "uptimeYear": "98.84%",
+    "status": "up",
+    "uptime": "99.06%",
+    "uptimeDay": "71.68%",
+    "uptimeWeek": "95.95%",
+    "uptimeMonth": "99.07%",
+    "uptimeYear": "98.76%",
     "time": 172,
-    "timeDay": 166,
-    "timeWeek": 176,
+    "timeDay": 174,
+    "timeWeek": 177,
     "timeMonth": 175,
     "timeYear": 172,
     "dailyMinutesDown": {
@@ -29,7 +29,8 @@
       "2026-07-09": 0,
       "2026-07-12": 1223,
       "2026-07-11": 933,
-      "2026-07-24": 61
+      "2026-07-24": 61,
+      "2026-10-11": 408
     }
   }
 ]
